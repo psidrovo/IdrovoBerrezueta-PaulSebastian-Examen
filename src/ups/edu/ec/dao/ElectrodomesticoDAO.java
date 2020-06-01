@@ -20,8 +20,13 @@ import ups.edu.ec.modelo.Television;
  */
 public class ElectrodomesticoDAO implements IElectrodomesticoDAO {
 
-    private SortedSet<Electrodomestico> lista = new TreeSet<>();
+    private SortedSet<Electrodomestico> lista;
 
+    public ElectrodomesticoDAO() {
+        lista = new TreeSet<>();
+    }
+
+    
     @Override
     public void crearTelevision(Television television) {
         lista.add(television);

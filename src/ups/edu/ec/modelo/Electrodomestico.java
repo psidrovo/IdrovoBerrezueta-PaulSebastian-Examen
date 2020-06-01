@@ -73,12 +73,52 @@ public abstract class Electrodomestico implements Comparable<Electrodomestico> {
         this.peso = peso;
     }
 
-    public abstract double obtenerPrecioFinal();
+    public double obtenerPrecioFinal(){
+        double precioFinal = 0;
+
+        int consumoEn = 0;
+        switch (this.getConsumoEnergetico()) {
+            case 'A':
+                consumoEn = 100;
+                break;
+            case 'B':
+                consumoEn = 80;
+                break;
+            case 'C':
+                consumoEn = 60;
+                break;
+            case 'D':
+                consumoEn = 50;
+                break;
+            case 'E':
+                consumoEn = 30;
+                break;
+            case 'F':
+                consumoEn = 10;
+                break;
+            default:
+                System.err.print("EL CODIGO DE CONSUMO ENERGETICO NO PERTENECE A LA TABLA VALOR = 0");
+                break;
+        }
+
+        int precioPeso = 0;
+
+        if (this.getPeso() >= 0 && this.getPeso() <= 19) {
+            precioPeso = 10;
+        } else if (this.getPeso() >= 20 && this.getPeso() <= 49) {
+            precioPeso = 50;
+        } else if (this.getPeso() >= 50 && this.getPeso() <= 79) {
+            precioPeso = 80;
+        } else if (this.getPeso() >= 80) {
+            precioPeso = 100;
+        }
+        precioFinal=precioPeso+consumoEn;
+        return precioFinal;
+    }
 
     @Override
     public String toString() {
-        return "\n\tcodigo=" + codigo + "\n\tdescripcion=" + descripcion + "\n\tprecioBase=" + precioBase + "\n\tcolor=" + color + "\n\tconsumoEnergetico=" + consumoEnergetico + "\n\tpeso=" + peso
-                + "\n\tPrecio final: " + obtenerPrecioFinal();
+        return "\n\tcodigo=" + codigo + "\n\tdescripcion=" + descripcion + "\n\tprecioBase=" + precioBase + "\n\tcolor=" + color + "\n\tconsumoEnergetico=" + consumoEnergetico + "\n\tpeso=" + peso;
     }
 
     @Override
